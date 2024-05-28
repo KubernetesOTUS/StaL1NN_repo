@@ -18,6 +18,9 @@ spec:
       mountPath: /etc/nginx/conf.d
       readOnly: true
     lifecycle:
+    postStart:
+        exec:
+          command: ["/bin/sh", "-c", "mkdir/homework/"]
       preStop:
         exec:
           command: ["/bin/sh", "-c", "rm -f /homework/index.html"]
@@ -28,7 +31,7 @@ spec:
   initContainers:
   - name: init
     image: busybox:latest
-    command: ['sh', '-c', 'echo "<h1>Pervoe domashnee zadanie</h1>" > /init/index.html']
+    command: ['sh', '-c', 'mkdir /init/ && echo "<h1>Pervoe domashnee zadanie</h1>" > /init/index.html']
     volumeMounts:
     - name: homework-init
       mountPath: /init
