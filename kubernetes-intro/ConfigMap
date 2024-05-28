@@ -10,6 +10,6 @@ data:
           server_name  localhost;
           location / {
             root   /homework;
-            index  index.html index.htm;
+            index.html;
         }
       }
