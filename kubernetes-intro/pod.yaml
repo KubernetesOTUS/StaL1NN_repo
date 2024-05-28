@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dz1
+  namespace: homework
+  labels:
+    name: dz1
+spec:
+  containers:
+  - name: ng-main
+    image: nginxinc/nginx-unprivileged
+    ports:
+    - containerPort: 8000
+    volumeMounts:
+    - name: homework-init
+      mountPath: /homework
+    - name: configuration
+      mountPath: /etc/nginx/conf.d
+      readOnly: true
+    lifecycle:
+      preStop:
+        exec:
+          command: ["/bin/sh", "-c", "rm -f /homework/index.html"]
+    resources:
+      limits:
+        cpu: "0.5"
+        memory: "32Mi"
+  initContainers:
+  - name: init
+    image: busybox:latest
+    command: ['sh', '-c', 'echo "<h1>Pervoe domashnee zadanie</h1>" > /init/index.html']
+    volumeMounts:
+    - name: homework-init
+      mountPath: /init
+  volumes:
+  - name: homework-init
+    emptyDir: {}
+  - name: configuration
+    configMap:
+      name: configuration
+      items:
+        - key: nginx.conf
+          path: nginx.conf
+  terminationGracePeriodSeconds: 0
+  securityContext:
+    runAsUser: 1000
+  dnsPolicy: Default
+  nodeSelector:
+    kubernetes.io/os: linux
