@@ -10,9 +10,9 @@
   - удаляет файл index.html из директории /homework основного контейнера, перед его завершением
 
 Как запустить проект:
-Запустить команду kubectl apply -f namespace.yaml
-Запустить команду kubectl apply -f pod.yaml
+  Запустить команду kubectl apply -f namespace.yaml
+  Запустить команду kubectl apply -f pod.yaml
 Как проверить работоспособность:
-Запустить команду curl http://localhost:8000
+  Запустить команду curl http://localhost:8000
 PR checklist:
-Знакомство с Kubernetes, основные понятия и архитектура
+  Знакомство с Kubernetes, основные понятия и архитектура
