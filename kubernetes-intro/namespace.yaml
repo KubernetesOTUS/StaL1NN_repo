@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2024-05-28T12:24:59Z"
+  labels:
+    kubernetes.io/metadata.name: homework
+  name: homework
+  resourceVersion: "3106856"
+  uid: 0b844295-f3cf-4ece-b689-1a4d1b64cbd6
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active
